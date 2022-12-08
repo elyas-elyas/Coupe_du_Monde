@@ -1,1 +1,1 @@
-# C-_Coupe_du_Monde
+# Coupe_du_Monde
