@@ -1,12 +1,12 @@
 CC=g++
 CCFLAGS= -Wall -Werror -std=c++11 -g
-LIBFLAGS=
+LIBFLAGS= -lsfml-graphics -lsfml-window -lsfml-system
 SRC= $(wildcard *.cpp)
 OBJ= $(SRC:.cpp=.o)
 TST_DIR=tests/
 TST= $(wildcard $(TST_DIR)/*.cpp)
 OBJ_TEST = $(filter-out main.o, $(OBJ)) $(TST:.cpp=.o)
-EXEC= exec
+EXEC= sfml-app
 
 
 all: ${EXEC}
@@ -18,7 +18,7 @@ test : testcase
 	cd $(TST_DIR); ./testcase
 
 $(EXEC): $(OBJ)
-	$(CC) $(LIBFLAGS) $^ -o $@  
+	$(CC)  $^ -o $@  $(LIBFLAGS)  
 
 %.o: %.cpp
 	$(CC) $(CCFLAGS) -o $@ -c $<
