@@ -1,4 +1,4 @@
-#include "Team.hh"
+#include "Team.hpp"
 
 int Team::Id=0;
 
