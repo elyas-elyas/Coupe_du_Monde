@@ -86,7 +86,7 @@ void PFCGame::run(sf::RenderWindow *window ,int *result1) {
             sf::sleep(sf::seconds(1.5));
             window->close();
         }
-        if (attemptCount > 2){
+        if (attemptCount > 3){
             sf::sleep(sf::seconds(1.5));
             *result1=0;
             window->close();

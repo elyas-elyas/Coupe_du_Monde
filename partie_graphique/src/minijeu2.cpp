@@ -93,11 +93,11 @@ minijeu_p::minijeu_p(sf::RenderWindow *window) {
         phrase2.setString("GOAL");
         phrase2.setFont(font);
         phrase2.setCharacterSize(50);
-        phrase2.setFillColor(Color::White);
+        phrase2.setFillColor(Color::Black);
         phrase2.setPosition(350, 100);
         phrase3.setString("PERDU");
         phrase3.setFont(font);
-        phrase3.setFillColor(Color::White);
+        phrase3.setFillColor(Color::Black);
         phrase3.setCharacterSize(50);
         phrase3.setPosition(350, 100);
 

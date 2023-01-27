@@ -1,9 +1,17 @@
+#include <SFML/Graphics.hpp>
+#include <string>
+#include <iostream>
 #include "minijeu3.hpp"
+
 
 minijeu3::minijeu3(sf::RenderWindow *window)
 {
-    window->create(sf::VideoMode(800, 600), "Minijeu 3");
-    font.loadFromFile("arial.ttf");
+    sf::Font font;
+
+    window->create(sf::VideoMode(1500, 600), "Minijeu 3");
+    if (!font.loadFromFile("arial.ttf")) {
+        std::cout << "Error loading font" << std::endl;
+    }     
     question1.setString("Voulez-vous gagner ce match ?");
     question1.setFont(font);
     question1.setCharacterSize(24);
@@ -57,12 +65,12 @@ void minijeu3::run(sf::RenderWindow *window)
                         window->display();
                         std::cout << "Vous avez perdu le match." << std::endl;
                         sf::sleep(sf::seconds(3));
-                    window->close();
+                        //window->close();
                 }
             }      
         }
     }
-    window->clear();
+    window->clear(sf::Color::Black);
     window->draw(question1);
     window->draw(answer1);
     window->draw(answer2);
@@ -70,9 +78,10 @@ void minijeu3::run(sf::RenderWindow *window)
 }
 }
 
-// int main()
-// {
-// minijeu3 game;
-// game.run();
-// return 0;
-// }
+/* int main()
+{
+minijeu3 game;
+game.run();
+return 0;
+}
+ */

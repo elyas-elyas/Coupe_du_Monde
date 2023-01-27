@@ -16,6 +16,5 @@ class minijeu3
         sf::Text answer1;
         sf::Text answer2;
         sf::Text answer3;
-        sf::Font font;
         sf::Event event;
 };

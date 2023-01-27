@@ -62,9 +62,12 @@ int main()
                 else if (mainGame.getState()==2)
                     minijeu_p minijeu2(&secondWindow);
             
-                else if (mainGame.getState()==3)
+                else if (mainGame.getState()==3){
+                    cout << "---------------\n    cunstroctor state is 3 \n ----------\n";
                     minijeu3 minjeu3(&secondWindow);
+                    cout << "---------------\n    cunstroctor state is 3 AFTER \n ----------\n";
 
+                }
                 playRound(&mainGame);
                 
                 vector<Team> winners=mainGame.getWinners();
@@ -77,27 +80,34 @@ int main()
             }
 
         }
-        /* if (mainGame.getInGame()== 0){
-            sf::Time elapsed1 = clock.getElapsedTime();
-            if (elapsed1.asSeconds() < 2)
-                showMessage(&mainWindow,"Vous avez perdu ");
-            else    
-                mainWindow.close();
-        } */
+        
 
-        if (mainGame.getInGame()== 0){
+        /* if (mainGame.getInGame()== 0){
             mainWindow.close();
-        }
+        } */
         // Clear the main window
         mainWindow.clear(sf::Color::White);
-
-        sf::Time elapsed1 = clock.getElapsedTime();
-        if (elapsed1.asSeconds() < 2)
-        {
-            showMessage(&mainWindow,"Welcome to \n \tWorld Cup for Dummies ");
+        
+        // Draw to the main window
+        if (mainGame.getInGame()  ==1){
+            sf::Time elapsed1 = clock.getElapsedTime();
+            if (elapsed1.asSeconds() < 2)
+            {
+                showMessage(&mainWindow,"Bienvenue a \n \t\"World Cup for Dummies\" ");
+            }
+            else{
+            mainWindowDraw(&mainWindow, visibleTeams);
+            }
         }
-        else{// Draw to the main window
-        mainWindowDraw(&mainWindow, visibleTeams);
+        if (mainGame.getInGame()== 0){
+            sf::Time elapsed1 = clock.getElapsedTime();
+            if (elapsed1.asSeconds() > 2)
+                mainWindow.close();
+            if(result1 == 2 &&result2 == 1)
+                showMessage(&mainWindow,"Vous avez Gagne !! ");
+            else
+                showMessage(&mainWindow,"Vous avez perdu ");
+
         }
         // Display the main window
         mainWindow.display();
@@ -130,8 +140,9 @@ int main()
             }
         }
         else if (mainGame.getState()==3){
-            //cout << "---------------\n    run state is 3 \n ----------\n";
+            cout << "---------------\n    run state is 3 \n ----------\n";
             minjeu3.run(&secondWindow);
+            mainGame.endGame();
         } 
 
 
