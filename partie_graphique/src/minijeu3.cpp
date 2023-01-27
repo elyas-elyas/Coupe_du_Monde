@@ -2,7 +2,7 @@
 
 minijeu3::minijeu3(sf::RenderWindow *window)
 {
-    window->create(sf::VideoMode(1500, 600), "Minijeu 3");
+    window->create(sf::VideoMode(800, 600), "Minijeu 3");
     font.loadFromFile("arial.ttf");
     question1.setString("Voulez-vous gagner ce match ?");
     question1.setFont(font);
@@ -48,7 +48,7 @@ void minijeu3::run(sf::RenderWindow *window)
                         window->draw(answer3);
                         window->display();
                         std::cout << "Vous avez gagne le match !" << std::endl;
-                        sf::sleep(sf::seconds(10));
+                        sf::sleep(sf::seconds(3));
                         window->close();
                     }
                     else if (answer2.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))

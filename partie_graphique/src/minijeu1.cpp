@@ -47,6 +47,7 @@ PFCGame::PFCGame(sf::RenderWindow *window) {
 }
 
 void PFCGame::run(sf::RenderWindow *window ,int *result1) {
+    int attemptCount=0;
     while (window->isOpen()) {
         sf::Event event;
         while (window->pollEvent(event)) {
@@ -58,13 +59,14 @@ void PFCGame::run(sf::RenderWindow *window ,int *result1) {
                 sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
                 if (rockButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
                     play(0,result1);
+                    attemptCount++;
                 } else if (paperButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
                     play(1,result1);
+                    attemptCount++;
                 } else if (scissorsButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
                     play(2,result1);
-                }
-                
-                
+                    attemptCount++;
+                } 
             }
         }
         window->clear();
@@ -84,6 +86,11 @@ void PFCGame::run(sf::RenderWindow *window ,int *result1) {
             sf::sleep(sf::seconds(1.5));
             window->close();
         }
+        if (attemptCount > 2){
+            sf::sleep(sf::seconds(1.5));
+            *result1=0;
+            window->close();
+        }
     }
 }
 
@@ -99,7 +106,7 @@ void PFCGame::play(int choice ,int *result1) {
     std::string result = "";
     if (choice == computerChoice) {
         result = "Egalite!";
-        *result1=1;
+        *result1=0;
     } else if (choice == 0 && computerChoice == 2) {
         result = "Gagne!";
         *result1=2;

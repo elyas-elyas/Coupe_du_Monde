@@ -104,8 +104,7 @@ minijeu_p::minijeu_p(sf::RenderWindow *window) {
 
 }
 
-void minijeu_p::run(sf::RenderWindow *window) {
-
+void minijeu_p::run(sf::RenderWindow *window, int *result2) {
 
     while (window->isOpen())
     {
@@ -125,6 +124,7 @@ void minijeu_p::run(sf::RenderWindow *window) {
                 window->close();
             }
             else if (event.key.code == sf::Keyboard::C) {
+                *result2=1;
                 window->draw(phrase2);
                 window->display();
                 sf::sleep(sf::seconds(2));

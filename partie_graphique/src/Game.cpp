@@ -5,6 +5,7 @@ Game::Game(vector<Team> _teamsVect){
     TeamsVect=_teamsVect;
     //Winners=_teamsVect;
     GameState = 0;
+    InGame= 1;
 }
 
 
@@ -42,4 +43,12 @@ int Game::getState(){
 void Game::incrementState(){
     GameState++;
 }
+
+void Game::endGame(){
+    InGame=0;
+}
+int Game::getInGame(){
+    return InGame;
+}
+
 

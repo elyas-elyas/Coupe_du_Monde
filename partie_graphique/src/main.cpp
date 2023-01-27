@@ -4,6 +4,7 @@
 #include "minijeu2.hpp"
 #include "minijeu3.hpp"
 
+
 int main()
 {   
     const int GAME_SIZE=8;
@@ -35,8 +36,11 @@ int main()
     secondWindow.setPosition(sf::Vector2i(800, 600));
 
     PFCGame minijeu1(&secondWindow);
-    int result1=3;
+    int result1;
+
     minijeu_p minijeu2(&secondWindow);
+    int result2=0;
+
     minijeu3 minjeu3(&secondWindow);
 
     sf::Clock clock; // starts the clock
@@ -58,9 +62,9 @@ int main()
                 else if (mainGame.getState()==2)
                     minijeu_p minijeu2(&secondWindow);
             
-                else if (mainGame.getState()==3){
+                else if (mainGame.getState()==3)
                     minijeu3 minjeu3(&secondWindow);
-                }
+
                 playRound(&mainGame);
                 
                 vector<Team> winners=mainGame.getWinners();
@@ -73,14 +77,24 @@ int main()
             }
 
         }
+        /* if (mainGame.getInGame()== 0){
+            sf::Time elapsed1 = clock.getElapsedTime();
+            if (elapsed1.asSeconds() < 2)
+                showMessage(&mainWindow,"Vous avez perdu ");
+            else    
+                mainWindow.close();
+        } */
 
+        if (mainGame.getInGame()== 0){
+            mainWindow.close();
+        }
         // Clear the main window
         mainWindow.clear(sf::Color::White);
 
         sf::Time elapsed1 = clock.getElapsedTime();
-        if (elapsed1.asSeconds() < 1)
+        if (elapsed1.asSeconds() < 2)
         {
-            //cout<<"-----WAITING ------------\n";
+            showMessage(&mainWindow,"Welcome to \n \tWorld Cup for Dummies ");
         }
         else{// Draw to the main window
         mainWindowDraw(&mainWindow, visibleTeams);
@@ -102,10 +116,18 @@ int main()
         if (mainGame.getState()==1){
             //cout << "---------------\n    run state is 1 \n ----------\n";
             minijeu1.run(&secondWindow, &result1);
+            if (result1 == 0 ){
+                mainGame.endGame();
+                clock.restart();
+            }
         }
         else if (mainGame.getState()==2){
             //cout << "---------------\n    run state is 2 \n ----------\n";
-            minijeu2.run(&secondWindow);
+            minijeu2.run(&secondWindow,&result2);
+            if (result2 == 0 ){
+                mainGame.endGame();
+                clock.restart();
+            }
         }
         else if (mainGame.getState()==3){
             //cout << "---------------\n    run state is 3 \n ----------\n";

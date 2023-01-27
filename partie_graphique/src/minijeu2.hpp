@@ -6,7 +6,7 @@ class minijeu_p
 {
     public:
         minijeu_p(sf::RenderWindow *window);
-        void run(sf::RenderWindow *window);
+        void run(sf::RenderWindow *window, int *result2);
 
     private:
 
