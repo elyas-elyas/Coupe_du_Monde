@@ -46,7 +46,7 @@ PFCGame::PFCGame(sf::RenderWindow *window) {
     }              
 }
 
-void PFCGame::run(sf::RenderWindow *window) {
+void PFCGame::run(sf::RenderWindow *window ,int *result1) {
     while (window->isOpen()) {
         sf::Event event;
         while (window->pollEvent(event)) {
@@ -57,12 +57,14 @@ void PFCGame::run(sf::RenderWindow *window) {
                 // Verification de la position de la souris pour savoir quel bouton a ete clique
                 sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
                 if (rockButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
-                    play(0);
+                    play(0,result1);
                 } else if (paperButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
-                    play(1);
+                    play(1,result1);
                 } else if (scissorsButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
-                    play(2);
+                    play(2,result1);
                 }
+                
+                
             }
         }
         window->clear();
@@ -77,12 +79,17 @@ void PFCGame::run(sf::RenderWindow *window) {
         window->draw(resultText);
         window->draw(choiceText);
         window->display();
+        if (*result1 == 2)
+        {
+            sf::sleep(sf::seconds(1.5));
+            window->close();
+        }
     }
 }
 
 
 
-void PFCGame::play(int choice) {
+void PFCGame::play(int choice ,int *result1) {
     // Generation d'un choix aleatoire pour l'ordinateur
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -92,14 +99,19 @@ void PFCGame::play(int choice) {
     std::string result = "";
     if (choice == computerChoice) {
         result = "Egalite!";
+        *result1=1;
     } else if (choice == 0 && computerChoice == 2) {
         result = "Gagne!";
+        *result1=2;
     } else if (choice == 1 && computerChoice == 0) {
         result = "Gagne!";
+        *result1=2;
     } else if (choice == 2 && computerChoice == 1) {
         result = "Gagne!";
+        *result1=2;
     } else {
         result = "Perdu!";
+        *result1=0;
     }
          // Mise à jour des textes pour afficher le resultat et le choix de l'utilisateur
         resultText.setString("Resultat : " + result);

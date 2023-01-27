@@ -2,6 +2,7 @@
 #include "main.hpp"
 #include "minijeu1.hpp"
 #include "minijeu2.hpp"
+#include "minijeu3.hpp"
 
 int main()
 {   
@@ -34,8 +35,11 @@ int main()
     secondWindow.setPosition(sf::Vector2i(800, 600));
 
     PFCGame minijeu1(&secondWindow);
+    int result1=3;
     minijeu_p minijeu2(&secondWindow);
+    minijeu3 minjeu3(&secondWindow);
 
+    sf::Clock clock; // starts the clock
 
     while (mainWindow.isOpen())
     {
@@ -46,12 +50,17 @@ int main()
             if (event.type == sf::Event::Closed)
                 mainWindow.close();
             else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::W){
+                mainGame.incrementState();
+
                 if (mainGame.getState()==1)
                     PFCGame minijeu1(&secondWindow);
+
                 else if (mainGame.getState()==2)
                     minijeu_p minijeu2(&secondWindow);
-
-                mainGame.incrementState();
+            
+                else if (mainGame.getState()==3){
+                    minijeu3 minjeu3(&secondWindow);
+                }
                 playRound(&mainGame);
                 
                 vector<Team> winners=mainGame.getWinners();
@@ -59,7 +68,6 @@ int main()
 
                 // cout<< "visible teams size : "<<visibleTeams.size()<<endl;; 
                 // cout<< "winners  size : "<<winners.size()<< endl; 
-                mainGame.incrementState();
                 mainGame.nextRound();
 
             }
@@ -69,9 +77,14 @@ int main()
         // Clear the main window
         mainWindow.clear(sf::Color::White);
 
-        // Draw to the main window
+        sf::Time elapsed1 = clock.getElapsedTime();
+        if (elapsed1.asSeconds() < 1)
+        {
+            //cout<<"-----WAITING ------------\n";
+        }
+        else{// Draw to the main window
         mainWindowDraw(&mainWindow, visibleTeams);
-
+        }
         // Display the main window
         mainWindow.display();
 
@@ -86,10 +99,18 @@ int main()
         //secondWindow.clear(sf::Color::White);
 
         // Draw to the second window
-        if (mainGame.getState()==1)
-            minijeu1.run(&secondWindow);
-        else if (mainGame.getState()==2)
+        if (mainGame.getState()==1){
+            //cout << "---------------\n    run state is 1 \n ----------\n";
+            minijeu1.run(&secondWindow, &result1);
+        }
+        else if (mainGame.getState()==2){
+            //cout << "---------------\n    run state is 2 \n ----------\n";
             minijeu2.run(&secondWindow);
+        }
+        else if (mainGame.getState()==3){
+            //cout << "---------------\n    run state is 3 \n ----------\n";
+            minjeu3.run(&secondWindow);
+        } 
 
 
         // Display the second window

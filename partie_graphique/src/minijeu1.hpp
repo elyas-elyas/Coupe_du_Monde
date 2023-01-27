@@ -4,7 +4,7 @@
 class PFCGame {
 public:
     PFCGame(sf::RenderWindow *window); 
-    void run(sf::RenderWindow *window);
+    void run(sf::RenderWindow *window,int *result1);
 
 private:
     sf::RenderWindow window;
@@ -14,6 +14,6 @@ private:
     sf::Font font;
     sf::Text question, resultText, choiceText;
 
-    void play(int choice);
+    void play(int choice,int *result1);
 };
 
