@@ -11,6 +11,6 @@ void teamContainer(sf::RectangleShape *entity,sf::Text *name,float x, float y){
     entity->setOutlineThickness(5);
     entity->setPosition(x, y);
 
-    name->setPosition(x,y);
+    name->setPosition(x+25,y+10);
 }
 

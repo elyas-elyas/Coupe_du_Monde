@@ -1,13 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include "minijeu2.hpp"
 
-minijeu_p::minijeu_p() {
+minijeu_p::minijeu_p(sf::RenderWindow *window) {
 
-        window.create(VideoMode::getDesktopMode(), "minijeu penalty", Style::Fullscreen);
-        window.setFramerateLimit(60);
+        window->create(VideoMode::getDesktopMode(), "minijeu penalty", Style::Fullscreen);
+        window->setFramerateLimit(60);
 
         // Chargement de l'image de fond
-        backgroundTexture.loadFromFile("stadium.png");
+        backgroundTexture.loadFromFile("/../img/stadium.png");
         background.setTexture(backgroundTexture);
 
         
@@ -103,64 +103,64 @@ minijeu_p::minijeu_p() {
 
 }
 
-void minijeu_p::run() {
+void minijeu_p::run(sf::RenderWindow *window) {
 
 
-    while (window.isOpen())
+    while (window->isOpen())
     {
-        while (window.pollEvent(event))
+        while (window->pollEvent(event))
         {
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::A) {
-                window.draw(phrase3);
-                window.display();
+                window->draw(phrase3);
+                window->display();
                 sf::sleep(sf::seconds(2));
-                window.close();
+                window->close();
             } 
             else if (event.key.code == sf::Keyboard::B) {
-                window.draw(phrase3);
-                window.display();
+                window->draw(phrase3);
+                window->display();
                 sf::sleep(sf::seconds(2));
-                window.close();
+                window->close();
             }
             else if (event.key.code == sf::Keyboard::C) {
-                window.draw(phrase2);
-                window.display();
+                window->draw(phrase2);
+                window->display();
                 sf::sleep(sf::seconds(2));
-                window.close();
+                window->close();
             }
             else if (event.key.code == sf::Keyboard::D) {
-                window.draw(phrase3);
-                window.display();
+                window->draw(phrase3);
+                window->display();
                 sf::sleep(sf::seconds(2));
-                window.close();
+                window->close();
             }
             else if (event.key.code == sf::Keyboard::E) {
-                window.draw(phrase3);
-                window.display();
+                window->draw(phrase3);
+                window->display();
                 sf::sleep(sf::seconds(2));
-                window.close();
+                window->close();
             }
         
             }
         }
-    window.clear();
-    window.draw(background);
-    window.draw(phrase1);
-    window.draw(cage);
-    window.draw(cible1);
-    window.draw(cible2);
-    window.draw(cible3);
-    window.draw(cible4);
-    window.draw(cible5);
-    window.draw(A);
-    window.draw(B);
-    window.draw(C);
-    window.draw(D);
-    window.draw(E);
+    window->clear();
+    window->draw(background);
+    window->draw(phrase1);
+    window->draw(cage);
+    window->draw(cible1);
+    window->draw(cible2);
+    window->draw(cible3);
+    window->draw(cible4);
+    window->draw(cible5);
+    window->draw(A);
+    window->draw(B);
+    window->draw(C);
+    window->draw(D);
+    window->draw(E);
 
 
-    window.display();
+    window->display();
     }
 }
 

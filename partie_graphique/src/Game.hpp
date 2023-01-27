@@ -9,7 +9,7 @@ class Game
 private:
     static bool InGame;
     int Size;
-    map <string,int> GameState;
+    int GameState;
     vector<Team> TeamsVect;
     vector<Team> Winners;
 
@@ -21,5 +21,7 @@ public:
     void nextRound();
     vector<Team> getTeams();
     vector<Team> getWinners();
+    int getState();
+    void incrementState();
 };
 

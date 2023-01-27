@@ -54,29 +54,34 @@ void mainWindowDraw(sf::RenderWindow *window,vector<Team> visibleTeams)
     float ySemi=200;
     float yFinal=280;
 
+    for (long unsigned int i=0 ; i<textVector.size() ; i++){
+        textVector[i]->setString("");
+    }
+
+
     for (long unsigned int i=0 ; i<visibleTeams.size() ; i++)
     {
         textVector[i]->setFont(font);
         textVector[i]->setString(visibleTeams[i].getName());
         textVector[i]->setCharacterSize(24);
         textVector[i]->setStyle(sf::Text::Bold);
+        textVector[i]->setFillColor(sf::Color::Black);
     }
-    
 
     teamContainer(&r11, textVector[0] ,30, yAll);
     teamContainer(&r12, textVector[1] ,30,yAll+ecart);
     teamContainer(&r13, textVector[2] ,30,yAll+2*ecart);
     teamContainer(&r14, textVector[3] ,30,yAll+3*ecart);
-    teamContainer(&r21, textVector[4] ,160, ySemi);
-    teamContainer(&r22, textVector[5] ,160,ySemi+2*ecart);
-    teamContainer(&r31, textVector[6] ,290,yFinal);
+    teamContainer(&r21, textVector[8] ,160, ySemi);
+    teamContainer(&r22, textVector[9] ,160,ySemi+2*ecart);
+    teamContainer(&r31, textVector[12] ,290,yFinal);
 
-    teamContainer(&r11g, textVector[7] ,670, yAll);
-    teamContainer(&r12g, textVector[8] ,670,yAll+ecart);
-    teamContainer(&r13g, textVector[9] ,670,yAll+2*ecart);
-    teamContainer(&r14g, textVector[10] ,670,yAll+3*ecart);
-    teamContainer(&r21g, textVector[11] ,540, ySemi);
-    teamContainer(&r22g, textVector[12] ,540,ySemi+2*ecart);
+    teamContainer(&r11g, textVector[4] ,670, yAll);
+    teamContainer(&r12g, textVector[5] ,670,yAll+ecart);
+    teamContainer(&r13g, textVector[6] ,670,yAll+2*ecart);
+    teamContainer(&r14g, textVector[7] ,670,yAll+3*ecart);
+    teamContainer(&r21g, textVector[10] ,540, ySemi);
+    teamContainer(&r22g, textVector[11] ,540,ySemi+2*ecart);
     teamContainer(&r31g, textVector[13] ,410,yFinal);
 
     if(!texture.loadFromFile("../img/fifa.jpg"))
@@ -96,3 +101,4 @@ void mainWindowDraw(sf::RenderWindow *window,vector<Team> visibleTeams)
         window->draw(**it);
     }
 }
+

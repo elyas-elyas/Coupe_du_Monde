@@ -3,7 +3,8 @@
 
 Game::Game(vector<Team> _teamsVect){
     TeamsVect=_teamsVect;
-    Winners=_teamsVect;
+    //Winners=_teamsVect;
+    GameState = 0;
 }
 
 
@@ -34,4 +35,11 @@ vector<Team> Game::getWinners(){
     return Winners;
 }
 
+int Game::getState(){
+    return GameState;
+}
+
+void Game::incrementState(){
+    GameState++;
+}
 

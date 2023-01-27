@@ -5,8 +5,8 @@ using namespace sf;
 class minijeu_p
 {
     public:
-        minijeu_p();
-        void run();
+        minijeu_p(sf::RenderWindow *window);
+        void run(sf::RenderWindow *window);
 
     private:
 

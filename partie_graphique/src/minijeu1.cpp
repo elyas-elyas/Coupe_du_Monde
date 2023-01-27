@@ -9,9 +9,9 @@ PFCGame::PFCGame(sf::RenderWindow *window) {
     // Initialisation de la fenêtre
     window->create(sf::VideoMode(800, 600), "Pierre-Feuille-Ciseaux");
     // Chargement des images pour les boutons
-    rockTexture.loadFromFile("../img/rock.png");
-    paperTexture.loadFromFile("../img/paper.png");
-    scissorsTexture.loadFromFile("../img/scissors.png");
+    rockTexture.loadFromFile("../img/rock.jpeg");
+    paperTexture.loadFromFile("../img/paper.jpeg");
+    scissorsTexture.loadFromFile("../img/scissors.jpeg");
     // Chargement de l'image de fond
     backgroundTexture.loadFromFile("../img/football_field.png");
     background.setTexture(backgroundTexture);
@@ -39,7 +39,7 @@ PFCGame::PFCGame(sf::RenderWindow *window) {
     question.setString("PIERRE FEUILLE CISEAU appuierez vous sur le bon choix ? ");
     question.setFont(font);
     question.setCharacterSize(24);
-    question.setFillColor(Color::White);
+    question.setFillColor(sf::Color::White);
     question.setPosition(100, 500);
     if (!font.loadFromFile("arial.ttf")) {
     std::cout << "Error loading font" << std::endl;
@@ -73,7 +73,7 @@ void PFCGame::run(sf::RenderWindow *window) {
         window->draw(paperButton);
         window->draw(scissorsButton);
         // Affichage des textes pour la question, le resultat et le choix de l'utilisateur
-        window->draw(question)
+        window->draw(question);
         window->draw(resultText);
         window->draw(choiceText);
         window->display();
